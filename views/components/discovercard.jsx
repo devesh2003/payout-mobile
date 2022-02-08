@@ -89,12 +89,11 @@ export default function App({
 							opacity: 0.5
 						}}
 					>
-						{/* {goal?.goal
+						{goal?.goal
 							? `$${goal?.goal
 									.toString()
 									.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`
-							: 'undecided'} */}
-						$40,000
+							: 'n/a'}
 					</Text>
 					<Text
 						style={{
@@ -125,8 +124,7 @@ export default function App({
 							opacity: 0.5
 						}}
 					>
-						{/* {goal?.percentage ? `${goal?.percentage}%` : '0%'} */}
-						10%
+						{goal?.percentage ? `${goal?.percentage}%` : '0%'}
 					</Text>
 					<Text
 						style={{

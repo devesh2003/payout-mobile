@@ -17,7 +17,7 @@ import { getToken, deleteTokens, saveToken } from '../tokenFunc'
 import * as Linking from 'expo-linking'
 import Loading from './loading'
 import NavLayout from './layouts/nav'
-import InvestCard from './components/invested.jsx'
+import InvestCard from './components/discovercard.jsx'
 import Header from './components/header.jsx'
 
 export default function App({ route, navigation }) {
@@ -55,12 +55,6 @@ export default function App({ route, navigation }) {
 				setLoading(false)
 				navigation.navigate('Home')
 			})
-	}
-
-	function getLinkData() {
-		axios.get('https://spotivity.vercel.app/api/spotify/link').then((link) => {
-			setLink(link.data.link)
-		})
 	}
 
 	useEffect(() => {
@@ -132,7 +126,7 @@ export default function App({ route, navigation }) {
 								{friendData.map((c) => {
 									return (
 										<View key={c.username}>
-											{/* <Text>{JSON.stringify(c?.video)}</Text> */}
+											{/* <Text>{JSON.stringify(c?.investment)}</Text> */}
 											<View style={{ marginBottom: 15 }}>
 												<InvestCard
 													icon={c?.icon ? c?.icon : null}
@@ -142,6 +136,7 @@ export default function App({ route, navigation }) {
 													mainlink={
 														c?.website || c?.pitchdeck || c?.video || null
 													}
+													goal={c?.investment}
 												/>
 											</View>
 											{/* <TouchableOpacity
