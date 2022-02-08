@@ -28,7 +28,6 @@ export default function App({ route, navigation }) {
 	const [refreshing, setRefreshing] = React.useState(false)
 	const [link, setLink] = React.useState(false)
 	const [loading, setLoading] = React.useState(true)
-	const [darkMode, setDarkMode] = React.useState(false)
 
 	const arrtest = [0, 1, 2]
 
@@ -53,8 +52,6 @@ export default function App({ route, navigation }) {
 			.then((res) => {
 				setChatData(res.data)
 				console.log(res.data)
-				// setFriendData(frnddata)
-				// Clipboard.setString(JSON.stringify(res.data.friends))
 				setLoading(false)
 				console.log('data fetched')
 			})
@@ -127,7 +124,7 @@ export default function App({ route, navigation }) {
 									style={{
 										fontSize: 30,
 										fontFamily: 'HelveticaBold',
-										color: darkMode ? '#fff' : '#222',
+										color: '#222',
 										marginTop: 10
 									}}
 								>
@@ -331,7 +328,7 @@ export default function App({ route, navigation }) {
 										style={{
 											fontSize: 14,
 											marginBottom: -1,
-											color: darkMode ? '#E55454' : '#cf4944',
+											color: '#cf4944',
 											fontFamily: 'HelveticaReg'
 										}}
 									>

@@ -37,7 +37,7 @@ export default function App({ route, navigation }) {
 
 	function fetchActivity(token) {
 		axios
-			.get('https://untitledarhnhack.herokuapp.com/api/discover', {
+			.get('https://untitledarhnhack.herokuapp.com/api/app/user', {
 				headers: {
 					'x-access-token': token
 				}
@@ -84,11 +84,14 @@ export default function App({ route, navigation }) {
 				style={{ backgroundColor: '#F4F9F5' }}
 				overScrollMode={'never'}
 			>
+				{/* <Text style={{ marginTop: 80 }}>
+					{JSON.stringify(friendData?.user)}
+				</Text> */}
 				<View
 					style={{
 						flex: 1,
 						backgroundColor: '#F4F9F5',
-						paddingBottom: 40 + 40 //change first item, 40 is fixed
+						paddingBottom: 40 + 40 // change first item, 40 is fixed
 					}}
 				>
 					<View style={{ marginTop: 15 }}>
@@ -134,7 +137,11 @@ export default function App({ route, navigation }) {
 													color: '#222'
 												}}
 											>
-												Hey, {'Arhaan Bahadur'.split(' ')[0]}!
+												Hey,{' '}
+												{friendData?.user?.fullname
+													? friendData?.user?.fullname.split(' ')[0]
+													: friendData?.user?.username}
+												!
 											</Text>
 											<Text
 												style={{
@@ -216,7 +223,6 @@ export default function App({ route, navigation }) {
 											fontSize: 14,
 											fontFamily: 'HelveticaReg',
 											textAlign: 'center'
-											// marginTop: 30
 										}}
 									>
 										View recommended projects{'   '}&rarr;
@@ -292,17 +298,24 @@ export default function App({ route, navigation }) {
 								style={{
 									display: 'flex',
 									flexDirection: 'row',
-									// justifyContent: 'flex-start',
-									// alignItems: 'center'
 									paddingRight: 35
 								}}
 							>
-								<View style={{ marginRight: 15 }}>
-									<InvestCard />
-								</View>
-								<View>
-									<InvestCard />
-								</View>
+								{/* <Text>{JSON.stringify(friendData?.companies)}</Text> */}
+								{friendData?.companies.map((c, index) => {
+									return (
+										<View
+											key={index}
+											style={{ marginRight: index == 0 ? 15 : 0 }}
+										>
+											<InvestCard
+												name={c?.name || 'Company Name'}
+												tagline={c?.tagline || 'This is a tagline.'}
+												icon={c?.icon}
+											/>
+										</View>
+									)
+								})}
 							</View>
 						</ScrollView>
 
