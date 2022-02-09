@@ -34,14 +34,14 @@ function App() {
 					<View style={{ flex: 1, backgroundColor: '#0AD98D' }}>
 						<StatusBar style="dark" backgroundColor={'#0AD98D'} />
 						<Stack.Navigator
-							initialRouteName={One}
+							initialRouteName={Home}
 							screenOptions={{
 								headerShown: false,
 								cardStyle: { backgroundColor: '#FFFFFF', opacity: 1 }
 							}}
 						>
 							{/* onboarding screens */}
-							<Stack.Screen name="One" component={One} />
+							<Stack.Screen name="Home" component={One} />
 							<Stack.Screen name="Two" component={Two} />
 							<Stack.Screen name="Three" component={Three} />
 							<Stack.Screen name="Login" component={Login} />
