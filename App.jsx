@@ -7,14 +7,14 @@ import { useFonts } from 'expo-font'
 import { StatusBar } from 'expo-status-bar'
 
 //routes
-import Home from './views/home'
+//  Onboarding
+import One from './views/home'
+import Two from './views/onboard/two'
+import Three from './views/onboard/three'
 import Login from './views/login'
 import Discover from './views/discover'
 import Chat from './views/chat'
 import Profile from './views/profile'
-//Onboarding
-import Two from './views/onboard/two'
-import Three from './views/onboard/three'
 
 const Stack = createStackNavigator()
 
@@ -34,20 +34,20 @@ function App() {
 					<View style={{ flex: 1, backgroundColor: '#0AD98D' }}>
 						<StatusBar style="dark" backgroundColor={'#0AD98D'} />
 						<Stack.Navigator
-							initialRouteName={Home}
+							initialRouteName={One}
 							screenOptions={{
 								headerShown: false,
 								cardStyle: { backgroundColor: '#FFFFFF', opacity: 1 }
 							}}
 						>
+							{/* onboarding screens */}
+							<Stack.Screen name="One" component={One} />
+							<Stack.Screen name="Two" component={Two} />
+							<Stack.Screen name="Three" component={Three} />
 							<Stack.Screen name="Login" component={Login} />
 							<Stack.Screen name="Discover" component={Discover} />
 							<Stack.Screen name="Chat" component={Chat} />
 							<Stack.Screen name="Profile" component={Profile} />
-							{/* onboarding screens */}
-							<Stack.Screen name="Home" component={Home} />
-							<Stack.Screen name="Two" component={Two} />
-							<Stack.Screen name="Three" component={Three} />
 						</Stack.Navigator>
 						<StatusBar style="dark" backgroundColor={'#ffffff'} />
 					</View>
