@@ -125,7 +125,6 @@ export default function App({
 							opacity: 0.5
 						}}
 					>
-						{/* {goal?.percentage ? `${goal?.percentage}%` : '0%'} */}
 						10%
 					</Text>
 					<Text
@@ -140,48 +139,6 @@ export default function App({
 					</Text>
 				</View>
 			</View>
-
-			{page == 'discover' ? (
-				<View>
-					{/* <Text>yo</Text> */}
-					{mainlink ? (
-						<TouchableOpacity
-							onPress={() => Linking.openURL(mainlink)}
-							style={{
-								paddingVertical: 15,
-								paddingHorizontal: 20,
-								backgroundColor: '#eaeaea',
-								borderRadius: 7.5,
-								marginTop: 12.5,
-								display: 'flex',
-								flexDirection: 'row',
-								justifyContent: 'space-between',
-								alignItems: 'center'
-							}}
-						>
-							<Text
-								style={{
-									fontSize: 14,
-									fontFamily: 'HelveticaReg',
-									color: '#222'
-								}}
-							>
-								Website
-							</Text>
-							<Text
-								style={{
-									fontSize: 14,
-									fontFamily: 'HelveticaReg',
-									color: '#222',
-									marginRight: 10
-								}}
-							>
-								&rarr;
-							</Text>
-						</TouchableOpacity>
-					) : null}
-				</View>
-			) : null}
 		</View>
 	)
 }

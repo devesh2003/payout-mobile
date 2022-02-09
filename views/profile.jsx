@@ -229,95 +229,101 @@ export default function App({ route, navigation }) {
 									</Text>
 								</TouchableOpacity>
 							</View>
+						</View>
 
-							<View style={{ marginTop: 20 }}>
-								<Text
-									style={{
-										fontSize: 18,
-										lineHeight: 23,
-										fontFamily: 'HelveticaBold',
-										color: '#222',
-										marginBottom: 12.5
+						{loading ? (
+							<View style={{ height: hp('48%') }}>
+								<Loading />
+							</View>
+						) : (
+							<View>
+								<View style={{ marginTop: 20, paddingHorizontal: 35 }}>
+									<Text
+										style={{
+											fontSize: 18,
+											lineHeight: 23,
+											fontFamily: 'HelveticaBold',
+											color: '#222',
+											marginBottom: 12.5
+										}}
+									>
+										Invested Projects
+									</Text>
+								</View>
+								<ScrollView
+									contentContainerStyle={{
+										paddingLeft: 35
 									}}
+									horizontal={true}
+									showsHorizontalScrollIndicator={false}
+									showsVerticalScrollIndicator={false}
+									overScrollMode={'never'}
 								>
-									Invested Projects
-								</Text>
-							</View>
-						</View>
-
-						<ScrollView
-							contentContainerStyle={{
-								paddingLeft: 35
-							}}
-							horizontal={true}
-							showsHorizontalScrollIndicator={false}
-							showsVerticalScrollIndicator={false}
-							overScrollMode={'never'}
-						>
-							<View
-								style={{
-									display: 'flex',
-									flexDirection: 'row',
-									paddingRight: 35
-								}}
-							>
-								<View style={{ marginRight: 15 }}>
-									<InvestCard />
-								</View>
-								<View>
-									<InvestCard />
-								</View>
-							</View>
-						</ScrollView>
-
-						<View style={{ marginTop: 30, paddingHorizontal: 35 }}>
-							<Text
-								style={{
-									fontSize: 18,
-									lineHeight: 23,
-									fontFamily: 'HelveticaBold',
-									color: '#222',
-									marginBottom: 12.5
-								}}
-							>
-								Your Companies
-							</Text>
-						</View>
-
-						<ScrollView
-							contentContainerStyle={{
-								paddingLeft: 35,
-								marginBottom: 30
-							}}
-							horizontal={true}
-							showsHorizontalScrollIndicator={false}
-							showsVerticalScrollIndicator={false}
-							overScrollMode={'never'}
-						>
-							<View
-								style={{
-									display: 'flex',
-									flexDirection: 'row',
-									paddingRight: 35
-								}}
-							>
-								{/* <Text>{JSON.stringify(friendData?.companies)}</Text> */}
-								{friendData?.companies.map((c, index) => {
-									return (
-										<View
-											key={index}
-											style={{ marginRight: index == 0 ? 15 : 0 }}
-										>
-											<InvestCard
-												name={c?.name || 'Company Name'}
-												tagline={c?.tagline || 'This is a tagline.'}
-												icon={c?.icon}
-											/>
+									<View
+										style={{
+											display: 'flex',
+											flexDirection: 'row',
+											paddingRight: 35
+										}}
+									>
+										<View style={{ marginRight: 15 }}>
+											<InvestCard />
 										</View>
-									)
-								})}
+										<View>
+											<InvestCard />
+										</View>
+									</View>
+								</ScrollView>
+
+								<View style={{ marginTop: 30, paddingHorizontal: 35 }}>
+									<Text
+										style={{
+											fontSize: 18,
+											lineHeight: 23,
+											fontFamily: 'HelveticaBold',
+											color: '#222',
+											marginBottom: 12.5
+										}}
+									>
+										Your Companies
+									</Text>
+								</View>
+
+								<ScrollView
+									contentContainerStyle={{
+										paddingLeft: 35,
+										marginBottom: 30
+									}}
+									horizontal={true}
+									showsHorizontalScrollIndicator={false}
+									showsVerticalScrollIndicator={false}
+									overScrollMode={'never'}
+								>
+									<View
+										style={{
+											display: 'flex',
+											flexDirection: 'row',
+											paddingRight: 35
+										}}
+									>
+										{friendData?.companies?.map((c, index) => {
+											return (
+												<View
+													key={index}
+													style={{ marginRight: index == 0 ? 15 : 0 }}
+												>
+													<InvestCard
+														name={c?.name || 'Company Name'}
+														tagline={c?.tagline || 'This is a tagline.'}
+														icon={c?.icon}
+													/>
+												</View>
+											)
+										})}
+									</View>
+								</ScrollView>
 							</View>
-						</ScrollView>
+						)}
 
 						<View style={{ paddingHorizontal: 35, marginBottom: 20 }}>
 							<TouchableOpacity
