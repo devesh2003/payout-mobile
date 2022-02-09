@@ -43,9 +43,10 @@ export default function App({ route, navigation }) {
 				}
 			})
 			.then((res) => {
+				// console.log(res.data)
 				setFriendData(res.data)
 				setLoading(false)
-				console.log('data fetched')
+				// console.log('data fetched')
 			})
 			.catch(async (err) => {
 				console.log(err.message)
@@ -199,7 +200,12 @@ export default function App({ route, navigation }) {
 											color: '#fff'
 										}}
 									>
-										$40,000
+										$
+										{friendData?.totalinv
+											? friendData?.totalinv
+													.toString()
+													.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+											: 0}
 									</Text>
 								</View>
 							</ImageBackground>
