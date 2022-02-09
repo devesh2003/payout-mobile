@@ -12,6 +12,9 @@ export default function App({
 	name,
 	tagline,
 	page,
+	//for invest card
+	amt,
+	equity,
 	mainlink,
 	goal
 }) {
@@ -61,8 +64,6 @@ export default function App({
 							opacity: 0.5,
 							width: wp('75%') - 70,
 							lineHeight: 16
-							// borderColor: 'green',
-							// borderWidth: 1
 						}}
 					>
 						{tagline ? tagline : 'Company Tagline'}
@@ -70,75 +71,142 @@ export default function App({
 				</View>
 			</View>
 
-			<View
-				style={{
-					marginTop: 20,
-					flex: 1,
-					flexDirection: 'row',
-					justifyContent: 'flex-start',
-					alignItems: 'center'
-				}}
-			>
-				<View style={{ width: wp('50%') - 70 }}>
-					<Text
-						style={{
-							fontSize: 22,
-							fontFamily: 'HelveticaBold',
-							color: '#00EC96',
-							marginBottom: 2.55,
-							opacity: 0.5
-						}}
-					>
-						{/* {goal?.goal
-							? `$${goal?.goal
-									.toString()
-									.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`
-							: 'undecided'} */}
-						$40,000
-					</Text>
-					<Text
-						style={{
-							fontSize: 12,
-							fontFamily: 'HelveticaBold',
-							color: '#222',
-							opacity: 0.5
-						}}
-					>
-						funding goal
-					</Text>
-				</View>
+			{page == 'invested' ? (
 				<View
 					style={{
-						height: 30,
-						width: 1,
-						backgroundColor: '#222',
-						marginHorizontal: 25
+						marginTop: 20,
+						flex: 1,
+						flexDirection: 'row',
+						justifyContent: 'flex-start',
+						alignItems: 'center'
 					}}
-				/>
-				<View style={{ width: wp('45%') - 70 }}>
-					<Text
+				>
+					<View style={{ width: wp('50%') - 70 }}>
+						<Text
+							style={{
+								fontSize: 22,
+								fontFamily: 'HelveticaBold',
+								color: '#00EC96',
+								marginBottom: 2.55,
+								opacity: 0.5
+							}}
+						>
+							{amt
+								? `$${amt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`
+								: '$0'}
+						</Text>
+						<Text
+							style={{
+								fontSize: 12,
+								fontFamily: 'HelveticaBold',
+								color: '#222',
+								opacity: 0.5
+							}}
+						>
+							invested
+						</Text>
+					</View>
+					<View
 						style={{
-							fontSize: 22,
-							fontFamily: 'HelveticaBold',
-							color: '#00EC96',
-							marginBottom: 2.55,
-							opacity: 0.5
+							height: 30,
+							width: 1,
+							backgroundColor: '#222',
+							marginHorizontal: 25
 						}}
-					>
-						10%
-					</Text>
-					<Text
-						style={{
-							fontSize: 12,
-							fontFamily: 'HelveticaBold',
-							color: '#222',
-							opacity: 0.5
-						}}
-					>
-						equity
-					</Text>
+					/>
+					<View style={{ width: wp('45%') - 70 }}>
+						<Text
+							style={{
+								fontSize: 22,
+								fontFamily: 'HelveticaBold',
+								color: '#00EC96',
+								marginBottom: 2.55,
+								opacity: 0.5
+							}}
+						>
+							{equity ? equity : 0}%
+						</Text>
+						<Text
+							style={{
+								fontSize: 12,
+								fontFamily: 'HelveticaBold',
+								color: '#222',
+								opacity: 0.5
+							}}
+						>
+							equity
+						</Text>
+					</View>
 				</View>
-			</View>
+			) : (
+				<View
+					style={{
+						marginTop: 20,
+						flex: 1,
+						flexDirection: 'row',
+						justifyContent: 'flex-start',
+						alignItems: 'center'
+					}}
+				>
+					<View style={{ width: wp('50%') - 70 }}>
+						<Text
+							style={{
+								fontSize: 22,
+								fontFamily: 'HelveticaBold',
+								color: '#00EC96',
+								marginBottom: 2.55,
+								opacity: 0.5
+							}}
+						>
+							{goal
+								? `$${goal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`
+								: 'n/a'}
+							{/* $40,000 */}
+						</Text>
+						<Text
+							style={{
+								fontSize: 12,
+								fontFamily: 'HelveticaBold',
+								color: '#222',
+								opacity: 0.5
+							}}
+						>
+							funding goal
+						</Text>
+					</View>
+					<View
+						style={{
+							height: 30,
+							width: 1,
+							backgroundColor: '#222',
+							marginHorizontal: 25
+						}}
+					/>
+					<View style={{ width: wp('45%') - 70 }}>
+						<Text
+							style={{
+								fontSize: 22,
+								fontFamily: 'HelveticaBold',
+								color: '#00EC96',
+								marginBottom: 2.55,
+								opacity: 0.5
+							}}
+						>
+							{equity ? equity : 0}%
+						</Text>
+						<Text
+							style={{
+								fontSize: 12,
+								fontFamily: 'HelveticaBold',
+								color: '#222',
+								opacity: 0.5
+							}}
+						>
+							of goal met
+						</Text>
+					</View>
+				</View>
+			)}
 		</View>
 	)
 }

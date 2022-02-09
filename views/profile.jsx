@@ -126,7 +126,9 @@ export default function App({ route, navigation }) {
 												marginRight: 15
 											}}
 											source={{
-												uri: 'https://arhaanbahadur.co/me.jpeg'
+												uri: friendData?.user?.image
+													? friendData?.user?.image
+													: 'https://t3.ftcdn.net/jpg/00/64/67/80/360_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg'
 											}}
 										/>
 										<View>
@@ -259,20 +261,74 @@ export default function App({ route, navigation }) {
 									showsVerticalScrollIndicator={false}
 									overScrollMode={'never'}
 								>
-									<View
-										style={{
-											display: 'flex',
-											flexDirection: 'row',
-											paddingRight: 35
-										}}
-									>
-										<View style={{ marginRight: 15 }}>
-											<InvestCard />
+									{friendData?.investments?.length > 0 ? (
+										<View
+											style={{
+												display: 'flex',
+												flexDirection: 'row',
+												paddingRight: 35
+											}}
+										>
+											{friendData?.investments?.map((c, index) => {
+												return (
+													<View
+														key={index}
+														style={{
+															marginRight:
+																index == 0 &&
+																friendData?.investments.length !== 1
+																	? 15
+																	: 0
+														}}
+													>
+														{/* <Text>{JSON.stringify(c)}</Text> */}
+														<InvestCard
+															name={c?.companyname || 'Company Name'}
+															// tagline={c?.tagline || 'This is a tagline.'}
+															// icon={c?.icon}
+															page="invested"
+															amt={c?.amount}
+															equity={c?.percentage}
+														/>
+													</View>
+												)
+											})}
 										</View>
-										<View>
-											<InvestCard />
+									) : (
+										<View
+											style={{
+												padding: 20,
+												backgroundColor: 'white',
+												borderRadius: 10,
+												width: wp('100%') - 70
+											}}
+										>
+											<Text
+												style={{
+													fontSize: 15,
+													color: '#222',
+													fontFamily: 'HelveticaBold'
+												}}
+											>
+												No investments found
+											</Text>
+											<TouchableOpacity
+												onPress={() => navigation.navigate('Discover')}
+											>
+												<Text
+													style={{
+														fontSize: 15,
+														color: '#222',
+														fontFamily: 'HelveticaReg',
+														marginTop: 20,
+														color: '#0AD98D'
+													}}
+												>
+													Get started &rarr;
+												</Text>
+											</TouchableOpacity>
 										</View>
-									</View>
+									)}
 								</ScrollView>
 
 								<View style={{ marginTop: 30, paddingHorizontal: 35 }}>
@@ -294,7 +350,7 @@ export default function App({ route, navigation }) {
 										paddingLeft: 35,
 										marginBottom: 30
 									}}
-									horizontal={true}
+									horizontal={friendData?.companies?.length > 1 ? true : false}
 									showsHorizontalScrollIndicator={false}
 									showsVerticalScrollIndicator={false}
 									overScrollMode={'never'}
@@ -306,20 +362,55 @@ export default function App({ route, navigation }) {
 											paddingRight: 35
 										}}
 									>
-										{friendData?.companies?.map((c, index) => {
-											return (
-												<View
-													key={index}
-													style={{ marginRight: index == 0 ? 15 : 0 }}
+										{friendData?.companies?.length > 0 ? (
+											<View>
+												{friendData?.companies?.map((c, index) => {
+													return (
+														<View
+															key={index}
+															style={{
+																marginRight:
+																	index == 0 &&
+																	friendData?.companies.length !== 1
+																		? 15
+																		: 0
+															}}
+														>
+															{/* <Text>{JSON.stringify(c.investment)}</Text> */}
+															<InvestCard
+																name={c?.name || 'Company Name'}
+																tagline={c?.tagline || 'This is a tagline.'}
+																icon={c?.icon}
+																goal={c?.investment?.goal}
+																equity={
+																	(c?.investment?.current /
+																		c?.investment?.goal) *
+																	100
+																}
+															/>
+														</View>
+													)
+												})}
+											</View>
+										) : (
+											<View
+												style={{
+													padding: 20,
+													backgroundColor: 'white',
+													borderRadius: 10
+												}}
+											>
+												<Text
+													style={{
+														fontSize: 15,
+														color: '#222',
+														fontFamily: 'HelveticaReg'
+													}}
 												>
-													<InvestCard
-														name={c?.name || 'Company Name'}
-														tagline={c?.tagline || 'This is a tagline.'}
-														icon={c?.icon}
-													/>
-												</View>
-											)
-										})}
+													No companies found
+												</Text>
+											</View>
+										)}
 									</View>
 								</ScrollView>
 							</View>
