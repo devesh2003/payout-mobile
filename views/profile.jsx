@@ -37,7 +37,7 @@ export default function App({ route, navigation }) {
 
 	function fetchActivity(token) {
 		axios
-			.get('https://untitledarhnhack.herokuapp.com/api/app/user', {
+			.get('https://untitledarhnhack.herokuapp.com/api/user', {
 				headers: {
 					'x-access-token': token
 				}
@@ -281,11 +281,13 @@ export default function App({ route, navigation }) {
 																	: 0
 														}}
 													>
-														{/* <Text>{JSON.stringify(c)}</Text> */}
 														<InvestCard
 															name={c?.companyname || 'Company Name'}
-															// tagline={c?.tagline || 'This is a tagline.'}
-															// icon={c?.icon}
+															tagline={
+																friendData?.compids[index]?.tagline ||
+																'This is a tagline.'
+															}
+															icon={friendData?.compids[index]?.icon}
 															page="invested"
 															amt={c?.amount}
 															equity={c?.percentage}
