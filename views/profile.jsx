@@ -36,6 +36,8 @@ export default function App({ route, navigation }) {
 	const [friendData, setFriendData] = useState([])
 
 	function fetchActivity(token) {
+		console.log('hello')
+
 		axios
 			.get('https://untitledarhnhack.herokuapp.com/api/user', {
 				headers: {
@@ -43,7 +45,7 @@ export default function App({ route, navigation }) {
 				}
 			})
 			.then((res) => {
-				// console.log(res.data)
+				console.log(res.data)
 				setFriendData(res.data)
 				setLoading(false)
 				// console.log('data fetched')

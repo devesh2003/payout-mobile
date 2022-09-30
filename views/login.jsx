@@ -15,6 +15,7 @@ import {
 import { useIsFocused } from '@react-navigation/native'
 import axios from 'axios'
 import { getToken, saveToken, deleteTokens } from '../tokenFunc'
+import { QRScanner } from './components/qrscan'
 
 export default function App({ route, navigation }) {
 	const isFocused = useIsFocused()
@@ -37,7 +38,8 @@ export default function App({ route, navigation }) {
 
 	return (
 		<ScrollView>
-			<View
+			<QRScanner nav={navigation} />
+			{/* <View
 				style={{
 					position: 'relative',
 					paddingVertical: hp('100%') >= 750 ? hp('12%') : hp('7%')
@@ -220,7 +222,7 @@ export default function App({ route, navigation }) {
 						</View>
 					</TouchableOpacity>
 				</View>
-			</View>
+			</View> */}
 		</ScrollView>
 	)
 }
