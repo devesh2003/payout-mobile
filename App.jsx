@@ -41,9 +41,9 @@ function App() {
 							}}
 						>
 							{/* onboarding screens */}
-							<Stack.Screen name="Home" component={Home} />
-							<Stack.Screen name="Two" component={Two} />
-							<Stack.Screen name="Three" component={Three} />
+							{/* <Stack.Screen name="Home" component={Home} />
+							<Stack.Screen name="Two" component={Two} /> */}
+							{/* <Stack.Screen name="Three" component={Three} /> */}
 							<Stack.Screen name="Login" component={Login} />
 							<Stack.Screen name="Discover" component={Discover} />
 							<Stack.Screen name="Chat" component={Chat} />

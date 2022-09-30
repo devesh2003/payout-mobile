@@ -18,6 +18,7 @@ import * as Linking from 'expo-linking'
 import Loading from './loading'
 import NavLayout from './layouts/nav'
 import InvestCard from './components/discovercard.jsx'
+import PropertyCard from "./components/PropertyCard.jsx"
 import Header from './components/header.jsx'
 
 export default function App({ route, navigation }) {
@@ -43,7 +44,17 @@ export default function App({ route, navigation }) {
 				}
 			})
 			.then((res) => {
-				setFriendData(res.data)
+				// setFriendData(res.data)
+				setFriendData([
+					{
+						username: "Uswername",
+						icon: "wd",
+						name: 1,
+						tagline: 45,
+						website: "https://google.com"
+			
+					}
+				])
 				setLoading(false)
 				// console.log('data fetched')
 			})
@@ -134,7 +145,7 @@ export default function App({ route, navigation }) {
 												<View key={c.username}>
 													{/* <Text>{JSON.stringify(c?.investment)}</Text> */}
 													<View style={{ marginBottom: 15 }}>
-														<InvestCard
+														<PropertyCard
 															icon={c?.icon ? c?.icon : null}
 															name={c?.name}
 															tagline={c?.tagline}
