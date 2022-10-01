@@ -20,12 +20,15 @@ import Loading from './loading'
 import NavLayout from './layouts/nav'
 import investbg from '../assets/investbg.png'
 import InvestCard from './components/invested.jsx'
+import PropertyCard from './components/PropertyCard.jsx'
 
 export default function App({ route, navigation }) {
 	const [refreshing, setRefreshing] = React.useState(false)
 	const [loading, setLoading] = React.useState(true)
 	const [propData,setPropData] = React.useState([])
 	const [totInv,setInv] = React.useState(0)
+	const [allProps,setProps] = React.useState([])
+	const [invested_ids,setInvestedIds] = React.useState([])
 	
 
 	const onRefresh = React.useCallback(() => {
@@ -37,6 +40,7 @@ export default function App({ route, navigation }) {
 	}, [])
 
 	const [friendData, setFriendData] = useState([])
+
 
 	function fetchActivity(token) {
 		console.log('hello')
@@ -50,7 +54,7 @@ export default function App({ route, navigation }) {
 			.then((res) => {
 				console.log(res.data)
 				setFriendData(res.data)
-				setLoading(false)
+				// setLoading(false)
 				// console.log('data fetched')
 			})
 			.catch(async (err) => {
@@ -63,24 +67,29 @@ export default function App({ route, navigation }) {
 
 		// Fetching investments
 		axios
-			.get("https://untitledarhnhack.herokuapp.com/api/property/investments/633737c78cfc616dec3f2ef1")
+			.get("https://untitledarhnhack.herokuapp.com/api/user/total_capital/633737c78cfc616dec3f2ef1")
 			.then( (res) => {
-				console.log(res.data)
-				setPropData(res.data)
+				console.log(res.data.total_capital)
+				setInv(res.data.total_capital)
+				setLoading(false)
 			} )
+
+		axios
+			.get("https://untitledarhnhack.herokuapp.com/api/properties")
+			.then( (res) => {
+				setProps(res.data.properties)
+			} )
+
+		axios
+			.get("https://untitledarhnhack.herokuapp.com/api/user/invested-properties/633737c78cfc616dec3f2ef1")
+			.then( (res) => {
+				setInvestedIds(res.data.property_ids)
+			} )
+
 	}
 
 	useEffect(() => {
 		getInitialData()
-
-		// Calculate total investment
-		var counter = 0
-		propData.map( (c) => {
-			counter += parseInt(c.amount, 10)
-		} )
-
-		setInv(counter)
-		console.log(counter)
 
 	}, [])
 
@@ -230,7 +239,7 @@ export default function App({ route, navigation }) {
 										}}
 									>
 										$
-										{totInv !== 0
+										{true
 											? totInv
 													.toString()
 													.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
@@ -296,7 +305,7 @@ export default function App({ route, navigation }) {
 									showsVerticalScrollIndicator={false}
 									overScrollMode={'never'}
 								>
-									{friendData?.investments?.length > 0 ? (
+									{allProps?.length > 0 ? (
 										<View
 											style={{
 												display: 'flex',
@@ -304,14 +313,19 @@ export default function App({ route, navigation }) {
 												paddingRight: 35
 											}}
 										>
-											{friendData?.investments?.map((c, index) => {
+											{allProps?.map((c, index) => {
+
+												if( !invested_ids.includes(c._id) ){
+													return null
+												}
+
 												return (
 													<View
 														key={index}
 														style={{
 															marginRight:
 																index == 0 &&
-																friendData?.investments.length !== 1
+																allProps?.length !== 1
 																	? 15
 																	: 0
 														}}
@@ -319,7 +333,7 @@ export default function App({ route, navigation }) {
 														{/* <Text>
 															{JSON.stringify(friendData?.compids[index].name)}
 														</Text> */}
-														<InvestCard
+														{/* <InvestCard
 															name={
 																friendData?.compids[index]?.name ||
 																'Company Name'
@@ -332,7 +346,21 @@ export default function App({ route, navigation }) {
 															page="invested"
 															amt={c?.amount}
 															equity={c?.percentage}
-														/>
+														/> */}
+
+														<PropertyCard
+															image={c?.image ? c?.image : null}
+															address={c?.address}
+															share_price={c?.share_price}
+															total_shares={c?.total_shares}
+															// tagline={c?.tagline}
+															page={'discover'}
+															// mainlink={
+															// 	c?.website || c?.pitchdeck || c?.video || null
+															// }
+															// goal={c?.investment}
+														/>	
+
 													</View>
 												)
 											})}
@@ -374,7 +402,7 @@ export default function App({ route, navigation }) {
 									)}
 								</ScrollView>
 
-								<View style={{ marginTop: 30, paddingHorizontal: 35 }}>
+								{/* <View style={{ marginTop: 30, paddingHorizontal: 35 }}>
 									<Text
 										style={{
 											fontSize: 18,
@@ -386,8 +414,9 @@ export default function App({ route, navigation }) {
 									>
 										Your Companies
 									</Text>
-								</View>
+								</View> */}
 
+								{/*
 								<ScrollView
 									contentContainerStyle={{
 										paddingLeft: 35,
@@ -417,7 +446,6 @@ export default function App({ route, navigation }) {
 																	: 0
 														}}
 													>
-														{/* <Text>{JSON.stringify(c.investment)}</Text> */}
 														<InvestCard
 															name={c?.name || 'Company Name'}
 															tagline={c?.tagline || 'This is a tagline.'}
@@ -453,10 +481,11 @@ export default function App({ route, navigation }) {
 										</View>
 									)}
 								</ScrollView>
+											*/}
 							</View>
 						)}
 
-						<View style={{ paddingHorizontal: 35, marginBottom: 20 }}>
+						<View style={{ paddingHorizontal: 30, marginBottom: 20, marginTop: 20 }}>
 							<TouchableOpacity
 								style={{
 									borderColor: '#cf4944',
