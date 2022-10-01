@@ -162,7 +162,7 @@ export default function App({ route, navigation }) {
 									</View>
 								</TouchableOpacity>
 
-								<TouchableOpacity onPress={() => navigation.navigate('Chat')}>
+								{/* <TouchableOpacity onPress={() => navigation.navigate('Chat')}>
 									<Image
 										style={{
 											height: 30,
@@ -171,13 +171,19 @@ export default function App({ route, navigation }) {
 										}}
 										source={require('../assets/icons/notif.png')}
 									/>
-								</TouchableOpacity>
+								</TouchableOpacity> */}
 							</View>
 
-							<ImageBackground
-								source={investbg}
-								resizeMode="cover"
-								style={{ flex: 1, justifyContent: 'center', marginTop: 30 }}
+							<View
+								// source={investbg}
+								// resizeMode="cover"
+								style={{
+									flex: 1,
+									justifyContent: 'center',
+									marginTop: 30,
+									backgroundColor: '#967259',
+									borderRadius: 20
+								}}
 							>
 								<View
 									style={{
@@ -210,7 +216,7 @@ export default function App({ route, navigation }) {
 											: 0}
 									</Text>
 								</View>
-							</ImageBackground>
+							</View>
 							<View
 								style={{
 									flex: 1,
@@ -235,7 +241,7 @@ export default function App({ route, navigation }) {
 											textAlign: 'center'
 										}}
 									>
-										View recommended projects{'   '}&rarr;
+										View properties{'   '}&rarr;
 									</Text>
 								</TouchableOpacity>
 							</View>
@@ -337,7 +343,7 @@ export default function App({ route, navigation }) {
 														color: '#222',
 														fontFamily: 'HelveticaReg',
 														marginTop: 20,
-														color: '#0AD98D'
+														color: '#967259'
 													}}
 												>
 													Get started &rarr;

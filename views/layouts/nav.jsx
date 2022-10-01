@@ -25,6 +25,19 @@ export default function Layout({ children, active, navigation }) {
 					alignItems: 'center'
 				}}
 			>
+				<TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+					<Image
+						style={{
+							height: 40,
+							width: 40
+						}}
+						source={
+							active == 'profile'
+								? require('../../assets/icons/homef.png')
+								: require('../../assets/icons/home.png')
+						}
+					/>
+				</TouchableOpacity>
 				<TouchableOpacity onPress={() => navigation.navigate('Discover')}>
 					<Image
 						style={{
@@ -39,21 +52,7 @@ export default function Layout({ children, active, navigation }) {
 					/>
 				</TouchableOpacity>
 
-				<TouchableOpacity onPress={() => navigation.navigate('Profile')}>
-					<Image
-						style={{
-							height: 40,
-							width: 40
-						}}
-						source={
-							active == 'profile'
-								? require('../../assets/icons/homef.png')
-								: require('../../assets/icons/home.png')
-						}
-					/>
-				</TouchableOpacity>
-
-				<TouchableOpacity onPress={() => navigation.navigate('Chat')}>
+				{/* <TouchableOpacity onPress={() => navigation.navigate('Chat')}>
 					<Image
 						style={{
 							height: 40,
@@ -65,7 +64,7 @@ export default function Layout({ children, active, navigation }) {
 								: require('../../assets/icons/chat.png')
 						}
 					/>
-				</TouchableOpacity>
+				</TouchableOpacity> */}
 			</View>
 		</View>
 	)
