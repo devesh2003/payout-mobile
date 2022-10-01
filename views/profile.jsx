@@ -24,6 +24,9 @@ import InvestCard from './components/invested.jsx'
 export default function App({ route, navigation }) {
 	const [refreshing, setRefreshing] = React.useState(false)
 	const [loading, setLoading] = React.useState(true)
+	const [propData,setPropData] = React.useState([])
+	const [totInv,setInv] = React.useState(0)
+	
 
 	const onRefresh = React.useCallback(() => {
 		setRefreshing(true)
@@ -57,10 +60,28 @@ export default function App({ route, navigation }) {
 				setLoading(false)
 				navigation.navigate('Home')
 			})
+
+		// Fetching investments
+		axios
+			.get("https://untitledarhnhack.herokuapp.com/api/property/investments/633737c78cfc616dec3f2ef1")
+			.then( (res) => {
+				console.log(res.data)
+				setPropData(res.data)
+			} )
 	}
 
 	useEffect(() => {
 		getInitialData()
+
+		// Calculate total investment
+		var counter = 0
+		propData.map( (c) => {
+			counter += parseInt(c.amount, 10)
+		} )
+
+		setInv(counter)
+		console.log(counter)
+
 	}, [])
 
 	const getInitialData = async () => {
@@ -209,8 +230,8 @@ export default function App({ route, navigation }) {
 										}}
 									>
 										$
-										{friendData?.totalinv
-											? friendData?.totalinv
+										{totInv !== 0
+											? totInv
 													.toString()
 													.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 											: 0}
