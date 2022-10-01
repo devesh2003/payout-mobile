@@ -18,7 +18,7 @@ import * as Linking from 'expo-linking'
 import Loading from './loading'
 import NavLayout from './layouts/nav'
 import InvestCard from './components/discovercard.jsx'
-import PropertyCard from "./components/PropertyCard.jsx"
+import PropertyCard from './components/PropertyCard.jsx'
 import Header from './components/header.jsx'
 
 export default function App({ route, navigation }) {
@@ -47,12 +47,11 @@ export default function App({ route, navigation }) {
 				// setFriendData(res.data)
 				setFriendData([
 					{
-						username: "Uswername",
-						icon: "wd",
+						username: 'Uswername',
+						icon: 'wd',
 						name: 1,
 						tagline: 45,
-						website: "https://google.com"
-			
+						website: 'https://google.com'
 					}
 				])
 				setLoading(false)
@@ -134,7 +133,8 @@ export default function App({ route, navigation }) {
 									Discover new startups to invest in.
 								</Text>
 
-								{loading ? (
+								{/* <Text>{JSON.stringify(c?.investment)}</Text> */}
+								{/* {loading ? (
 									<View style={{ height: hp('50%') }}>
 										<Loading />
 									</View>
@@ -143,7 +143,6 @@ export default function App({ route, navigation }) {
 										{friendData.map((c) => {
 											return (
 												<View key={c.username}>
-													{/* <Text>{JSON.stringify(c?.investment)}</Text> */}
 													<View style={{ marginBottom: 15 }}>
 														<PropertyCard
 															icon={c?.icon ? c?.icon : null}
@@ -160,7 +159,7 @@ export default function App({ route, navigation }) {
 											)
 										})}
 									</View>
-								)}
+								)} */}
 							</View>
 						</View>
 					</View>

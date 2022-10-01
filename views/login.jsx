@@ -38,7 +38,9 @@ export default function App({ route, navigation }) {
 
 	return (
 		<ScrollView>
-			<QRScanner nav={navigation} />
+			<View style={{ height: hp('90%') }}>
+				<QRScanner nav={navigation} />
+			</View>
 			{/* <View
 				style={{
 					position: 'relative',

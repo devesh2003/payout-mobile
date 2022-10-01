@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, Button } from 'react-native'
 import { BarCodeScanner } from 'expo-barcode-scanner'
 import axios from 'axios'
 import { getToken, saveToken, deleteTokens } from '../../tokenFunc'
+import { widthPercentageToDP } from 'react-native-responsive-screen'
 
 export const QRScanner = (props) => {
 	const [hasPermission, setHasPermission] = useState(null)
@@ -25,8 +26,8 @@ export const QRScanner = (props) => {
 
 	// What happens when we scan the bar code
 	const handleBarCodeScanned = ({ type, data }) => {
-		setScanned(true)
-		setText(data)
+		// setScanned(true)
+		// setText(data)
 
 		// if (username?.length <= 0 || password.length <= 0) {
 		// 	setValidate(true)
@@ -50,7 +51,7 @@ export const QRScanner = (props) => {
 		// })
 		// }
 
-		console.log('Type: ' + type + '\nData: ' + data)
+		// console.log('Type: ' + type + '\nData: ' + data)
 	}
 
 	// Check permissions and return the screens
@@ -76,10 +77,10 @@ export const QRScanner = (props) => {
 	// Return the View
 	return (
 		<View style={styles.container}>
-			<View style={styles.barcodebox}>
+			<View style={[styles.barcodebox]}>
 				<BarCodeScanner
 					onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-					style={{ height: 400, width: 400 }}
+					style={{ height: 700, width: 700 }}
 				/>
 			</View>
 			<Text style={styles.maintext}>{text}</Text>
@@ -94,7 +95,7 @@ export const QRScanner = (props) => {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#A0D2EB',
+		// backgroundColor: '#A0D2EB',
 		alignItems: 'center',
 		justifyContent: 'center'
 	},
@@ -105,10 +106,9 @@ const styles = StyleSheet.create({
 	barcodebox: {
 		alignItems: 'center',
 		justifyContent: 'center',
-		height: 300,
-		width: 300,
+		height: widthPercentageToDP('70%'),
+		width: widthPercentageToDP('70%'),
 		overflow: 'hidden',
-		borderRadius: 30,
-		backgroundColor: 'tomato'
+		borderRadius: 30
 	}
 })
