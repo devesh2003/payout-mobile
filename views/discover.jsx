@@ -153,6 +153,7 @@ export default function App({ route, navigation }) {
 															total_shares={c?.total_shares}
 															// tagline={c?.tagline}
 															page={'discover'}
+															disp_value
 															// mainlink={
 															// 	c?.website || c?.pitchdeck || c?.video || null
 															// }

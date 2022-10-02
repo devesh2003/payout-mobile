@@ -14,7 +14,9 @@ export default function App({
 	page,
 	// mainlink,
 	share_price,
-	total_shares
+	total_shares,
+	invested_amount,
+	disp_value
 }) {
 	return (
 		<View
@@ -122,7 +124,11 @@ export default function App({
 						marginHorizontal: 20
 					}}
 				/>
-				<View style={{ width: wp('50%') - 70 }}>
+
+				{/* Property value View */}
+				
+				{disp_value ? 
+				(<View style={{ width: wp('50%') - 70 }}>
 					<Text
 						style={{
 							fontSize: 22,
@@ -144,7 +150,35 @@ export default function App({
 					>
 						Property Value
 					</Text>
-				</View>
+				</View>) : null}
+
+				{/* Invested amount */}
+				{invested_amount ?
+				(<View style={{ width: wp('50%') - 70 }}>
+					<Text
+						style={{
+							fontSize: 22,
+							fontFamily: 'HelveticaBold',
+							color: '#00EC96',
+							marginBottom: 2.55,
+							opacity: 0.5
+						}}
+					>
+						{invested_amount ? `\$${invested_amount.toString()
+													.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}` : '$0'}
+					</Text>
+					<Text
+						style={{
+							fontSize: 12,
+							fontFamily: 'HelveticaBold',
+							color: '#222',
+							opacity: 0.5
+						}}
+					>
+						Investment
+					</Text>
+				</View>) : null}
+
 			</View>
 
 			{page == 'discover' ? (

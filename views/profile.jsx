@@ -293,7 +293,7 @@ export default function App({ route, navigation }) {
 											marginBottom: 12.5
 										}}
 									>
-										Invested Projects
+										Invested Properties
 									</Text>
 								</View>
 								<ScrollView
@@ -355,6 +355,7 @@ export default function App({ route, navigation }) {
 															total_shares={c?.total_shares}
 															// tagline={c?.tagline}
 															page={'discover'}
+															invested_amount={10000}
 															// mainlink={
 															// 	c?.website || c?.pitchdeck || c?.video || null
 															// }
